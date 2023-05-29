@@ -149,7 +149,7 @@ spec:
       serviceAccountName: cert-manager-webhook-pdns
       containers:
         - name: cert-manager-webhook-pdns
-          image: "cert-manager-webhook-pdns:63ef1086f276da8131a8540f5570aa1bcb13dea3"
+          image: "ghcr.io/sschaeffner/cert-manager-webhook-pdns:7125eec68c4d5aac55e3c1fc60419b7a6e368551"
           imagePullPolicy: IfNotPresent
           args:
             - --tls-cert-file=/tls/tls.crt
