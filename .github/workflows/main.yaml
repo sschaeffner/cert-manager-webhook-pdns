@@ -62,13 +62,18 @@ jobs:
         with:
           version: v3.4.0
 
+      - name: Install yq
+        run: |
+          wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          chmod a+x /usr/local/bin/yq
+
       - name: Build manifests
         run: |
           helm template \
           --set image.repository=${{ env.IMAGE_NAME }} \
           --set image.tag=${{ github.sha }} \
           cert-manager-webhook-pdns \
-          deploy/cert-manager-webhook-pdns > "deploy/cert-manager-webhook-pdns.yaml"
+          deploy/cert-manager-webhook-pdns | /usr/local/bin/yq "del(.metadata.labels)" > "deploy/cert-manager-webhook-pdns.yaml"
 
       - name: Commit and push manifests
         run: |
