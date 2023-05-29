@@ -70,7 +70,7 @@ jobs:
       - name: Build manifests
         run: |
           helm template \
-          --set image.repository=${{ env.IMAGE_NAME }} \
+          --set image.repository=ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }} \
           --set image.tag=${{ github.sha }} \
           cert-manager-webhook-pdns \
           deploy/cert-manager-webhook-pdns | /usr/local/bin/yq "del(.metadata.labels)" > "deploy/cert-manager-webhook-pdns.yaml"

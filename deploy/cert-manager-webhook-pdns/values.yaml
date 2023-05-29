@@ -13,7 +13,7 @@ certManager:
   serviceAccountName: cert-manager
 
 image:
-  repository: zachomedia/cert-manager-webhook-pdns
+  repository: ghcr.io/sschaeffner/cert-manager-webhook-pdns
   # tag: latest
   pullPolicy: IfNotPresent
 
