@@ -26,3 +26,4 @@ testdata/pdns/apikey.yml
 
 # Editors
 .vscode/
+.idea/
