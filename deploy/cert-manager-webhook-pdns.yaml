@@ -4,12 +4,6 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: cert-manager-webhook-pdns
-  labels:
-    helm.sh/chart: cert-manager-webhook-pdns-3.1.0
-    app.kubernetes.io/name: cert-manager-webhook-pdns
-    app.kubernetes.io/instance: cert-manager-webhook-pdns
-    app.kubernetes.io/version: "v2.3.0"
-    app.kubernetes.io/managed-by: Helm
 ---
 # Source: cert-manager-webhook-pdns/templates/rbac.yaml
 # Grant cert-manager permission to validate using our apiserver
@@ -17,12 +11,6 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: cert-manager-webhook-pdns
-  labels:
-    helm.sh/chart: cert-manager-webhook-pdns-3.1.0
-    app.kubernetes.io/name: cert-manager-webhook-pdns
-    app.kubernetes.io/instance: cert-manager-webhook-pdns
-    app.kubernetes.io/version: "v2.3.0"
-    app.kubernetes.io/managed-by: Helm
 rules:
   - apiGroups:
       - ''
@@ -45,12 +33,6 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: cert-manager-webhook-pdns:domain-solver
-  labels:
-    helm.sh/chart: cert-manager-webhook-pdns-3.1.0
-    app.kubernetes.io/name: cert-manager-webhook-pdns
-    app.kubernetes.io/instance: cert-manager-webhook-pdns
-    app.kubernetes.io/version: "v2.3.0"
-    app.kubernetes.io/managed-by: Helm
 rules:
   - apiGroups:
       - acme.zacharyseguin.ca
@@ -67,12 +49,6 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: cert-manager-webhook-pdns
-  labels:
-    helm.sh/chart: cert-manager-webhook-pdns-3.1.0
-    app.kubernetes.io/name: cert-manager-webhook-pdns
-    app.kubernetes.io/instance: cert-manager-webhook-pdns
-    app.kubernetes.io/version: "v2.3.0"
-    app.kubernetes.io/managed-by: Helm
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -90,12 +66,6 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: cert-manager-webhook-pdns:auth-delegator
-  labels:
-    helm.sh/chart: cert-manager-webhook-pdns-3.1.0
-    app.kubernetes.io/name: cert-manager-webhook-pdns
-    app.kubernetes.io/instance: cert-manager-webhook-pdns
-    app.kubernetes.io/version: "v2.3.0"
-    app.kubernetes.io/managed-by: Helm
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -111,12 +81,6 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: cert-manager-webhook-pdns:domain-solver
-  labels:
-    helm.sh/chart: cert-manager-webhook-pdns-3.1.0
-    app.kubernetes.io/name: cert-manager-webhook-pdns
-    app.kubernetes.io/instance: cert-manager-webhook-pdns
-    app.kubernetes.io/version: "v2.3.0"
-    app.kubernetes.io/managed-by: Helm
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -136,12 +100,6 @@ kind: RoleBinding
 metadata:
   name: cert-manager-webhook-pdns:webhook-authentication-reader
   namespace: kube-system
-  labels:
-    helm.sh/chart: cert-manager-webhook-pdns-3.1.0
-    app.kubernetes.io/name: cert-manager-webhook-pdns
-    app.kubernetes.io/instance: cert-manager-webhook-pdns
-    app.kubernetes.io/version: "v2.3.0"
-    app.kubernetes.io/managed-by: Helm
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -157,12 +115,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: cert-manager-webhook-pdns
-  labels:
-    helm.sh/chart: cert-manager-webhook-pdns-3.1.0
-    app.kubernetes.io/name: cert-manager-webhook-pdns
-    app.kubernetes.io/instance: cert-manager-webhook-pdns
-    app.kubernetes.io/version: "v2.3.0"
-    app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
   ports:
@@ -179,14 +131,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cert-manager-webhook-pdns
-  labels:
-    helm.sh/chart: cert-manager-webhook-pdns-3.1.0
-    app.kubernetes.io/name: cert-manager-webhook-pdns
-    app.kubernetes.io/instance: cert-manager-webhook-pdns
-    app.kubernetes.io/version: "v2.3.0"
-    app.kubernetes.io/managed-by: Helm
 spec:
-  replicas: 
+  replicas:
   selector:
     matchLabels:
       app.kubernetes.io/name: cert-manager-webhook-pdns
@@ -203,7 +149,7 @@ spec:
       serviceAccountName: cert-manager-webhook-pdns
       containers:
         - name: cert-manager-webhook-pdns
-          image: "cert-manager-webhook-pdns:cbb27d711879510ad9985ea8cde5693b68dfd12c"
+          image: "cert-manager-webhook-pdns:aabec7a372aade89b9d67d59e21f5cad27321528"
           imagePullPolicy: IfNotPresent
           args:
             - --tls-cert-file=/tls/tls.crt
@@ -233,8 +179,7 @@ spec:
             - name: certs
               mountPath: /tls
               readOnly: true
-          resources:
-            {}
+          resources: {}
       volumes:
         - name: certs
           secret:
@@ -245,12 +190,6 @@ apiVersion: apiregistration.k8s.io/v1
 kind: APIService
 metadata:
   name: v1alpha1.acme.zacharyseguin.ca
-  labels:
-    helm.sh/chart: cert-manager-webhook-pdns-3.1.0
-    app.kubernetes.io/name: cert-manager-webhook-pdns
-    app.kubernetes.io/instance: cert-manager-webhook-pdns
-    app.kubernetes.io/version: "v2.3.0"
-    app.kubernetes.io/managed-by: Helm
   annotations:
     cert-manager.io/inject-ca-from: "default/cert-manager-webhook-pdns-webhook-tls"
 spec:
@@ -269,12 +208,6 @@ kind: Certificate
 metadata:
   name: cert-manager-webhook-pdns-ca
   namespace: "default"
-  labels:
-    helm.sh/chart: cert-manager-webhook-pdns-3.1.0
-    app.kubernetes.io/name: cert-manager-webhook-pdns
-    app.kubernetes.io/instance: cert-manager-webhook-pdns
-    app.kubernetes.io/version: "v2.3.0"
-    app.kubernetes.io/managed-by: Helm
 spec:
   secretName: cert-manager-webhook-pdns-ca
   duration: 43800h0m0s # 5y
@@ -290,21 +223,15 @@ kind: Certificate
 metadata:
   name: cert-manager-webhook-pdns-webhook-tls
   namespace: "default"
-  labels:
-    helm.sh/chart: cert-manager-webhook-pdns-3.1.0
-    app.kubernetes.io/name: cert-manager-webhook-pdns
-    app.kubernetes.io/instance: cert-manager-webhook-pdns
-    app.kubernetes.io/version: "v2.3.0"
-    app.kubernetes.io/managed-by: Helm
 spec:
   secretName: cert-manager-webhook-pdns-webhook-tls
   duration: 8760h0m0s # 1y
   issuerRef:
     name: cert-manager-webhook-pdns-ca
   dnsNames:
-  - cert-manager-webhook-pdns
-  - cert-manager-webhook-pdns.default
-  - cert-manager-webhook-pdns.default.svc
+    - cert-manager-webhook-pdns
+    - cert-manager-webhook-pdns.default
+    - cert-manager-webhook-pdns.default.svc
 ---
 # Source: cert-manager-webhook-pdns/templates/pki.yaml
 # Create a selfsigned Issuer, in order to create a root CA certificate for
@@ -314,12 +241,6 @@ kind: Issuer
 metadata:
   name: cert-manager-webhook-pdns-selfsign
   namespace: "default"
-  labels:
-    helm.sh/chart: cert-manager-webhook-pdns-3.1.0
-    app.kubernetes.io/name: cert-manager-webhook-pdns
-    app.kubernetes.io/instance: cert-manager-webhook-pdns
-    app.kubernetes.io/version: "v2.3.0"
-    app.kubernetes.io/managed-by: Helm
 spec:
   selfSigned: {}
 ---
@@ -330,12 +251,6 @@ kind: Issuer
 metadata:
   name: cert-manager-webhook-pdns-ca
   namespace: "default"
-  labels:
-    helm.sh/chart: cert-manager-webhook-pdns-3.1.0
-    app.kubernetes.io/name: cert-manager-webhook-pdns
-    app.kubernetes.io/instance: cert-manager-webhook-pdns
-    app.kubernetes.io/version: "v2.3.0"
-    app.kubernetes.io/managed-by: Helm
 spec:
   ca:
     secretName: cert-manager-webhook-pdns-ca
