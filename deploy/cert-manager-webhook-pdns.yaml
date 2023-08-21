@@ -140,16 +140,16 @@ spec:
   template:
     metadata:
       labels:
-        helm.sh/chart: cert-manager-webhook-pdns-3.1.0
+        helm.sh/chart: cert-manager-webhook-pdns-3.1.1
         app.kubernetes.io/name: cert-manager-webhook-pdns
         app.kubernetes.io/instance: cert-manager-webhook-pdns
-        app.kubernetes.io/version: "v2.3.0"
+        app.kubernetes.io/version: "v2.4.0"
         app.kubernetes.io/managed-by: Helm
     spec:
       serviceAccountName: cert-manager-webhook-pdns
       containers:
         - name: cert-manager-webhook-pdns
-          image: "ghcr.io/sschaeffner/cert-manager-webhook-pdns:7125eec68c4d5aac55e3c1fc60419b7a6e368551"
+          image: "ghcr.io/sschaeffner/cert-manager-webhook-pdns:9d8f5d56f58c9714d20bc7123d6eb8bd51f15f0b"
           imagePullPolicy: IfNotPresent
           args:
             - --tls-cert-file=/tls/tls.crt
